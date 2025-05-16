@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Build Your Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Metal+Mania&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+            /* Set Roboto as the default font for all text */
+            color: #fff;
+        }
+
+        #bg-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            min-width: 100%;
+            min-height: 100%;
+            object-fit: cover;
+            z-index: -1;
+            /* Send behind other content */
+        }
+
+
+        header {
+            background-color: #333;
+            padding: 10px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 70px;
+            width: auto;
+        }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .center-nav {
+            display: flex;
+            gap: 30px;
+            margin-right: 100px;
+        }
+
+        .center-nav a {
+            color: #fff;
+            text-decoration: none;
+            font-family: 'Roboto', sans-serif;
+            font-weight: bold;
+            font-size: 1.3em;
+        }
+
+        .center-nav a:hover {
+            color: rgb(184, 176, 176);
+            background-color: #333;
+            border-radius: 5px;
+        }
+
+
+        .center-nav a i {
+            margin-right: 5px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 30px;
+        }
+
+        .social-icons a img {
+            width: 35px;
+            height: 35px;
+            transition: transform 0.3s ease, margin 0.3s ease;
+        }
+
+        .social-icons a img:hover {
+            transform: scale(1.1);
+            margin-right: 10px;
+        }
+
+        .hamburger-menu {
+            display: none;
+            font-size: 2em;
+            color: white;
+            cursor: pointer;
+        }
+
+        .hero {
+            position: relative;
+            text-align: center;
+            background: url("Img/herobanner.jpg") no-repeat center center/cover;
+            padding: 185px 20px;
+            color: #000;
+        }
+
+        .hero h1 {
+            font-size: 3em;
+            font-family: 'Metal Mania', cursive;
+            letter-spacing: 5px;
+        }
+
+        .search-bar i {
+            margin-right: 8px;
+        }
+
+        .search-bar {
+            display: inline-flex;
+            align-items: center;
+            border: 2px solid black;
+            border-radius: 20px;
+            padding: 5px 10px;
+            background-color: #fff;
+        }
+
+        .search-bar input {
+            border: none;
+            outline: none;
+            padding: 5px 10px;
+            font-size: 16px;
+            width: 200px;
+        }
+
+        .card-wrapper {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            margin: 90px;
+            gap: 20px;
+        }
+
+        .arrow-controls {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .arrow {
+            color: white;
+            font-size: 30px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+
+
+        .card-container {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            margin: 10px 90px 10px 280px;
+            /* Moves the container to the right by adjusting the left margin */
+        }
+
+        .row {
+            display: flex;
+            gap: 50px;
+        }
+
+
+
+        .card {
+            width: 250px;
+            height: 350px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            position: relative;
+            padding: 0;
+        }
+
+        .card:hover {
+            background-color: #494949;
+            /* light grey hover */
+            transform: scale(1.06);
+            /* optional: slight zoom effect */
+            opacity: 0.5; /* makes background-color of .card visible */
+
+        }
+
+
+        .card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .card-text {
+            position: absolute;
+            bottom: 10px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            background: none;
+            color: white;
+            padding: 5px;
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+
+        .card-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            max-width: 500px;
+            margin: 10px 0;
+        }
+
+        .arrow:hover {
+            transform: scale(1.2) rotate(5deg);
+        }
+
+        footer {
+            background-color: #111;
+            text-align: center;
+            padding: 7px;
+        }
+
+        footer img {
+            height: 70px;
+            width: auto;
+        }
+
+        @media (max-width: 768px) {
+            .card-wrapper {
+                flex-direction: column;
+                align-items: center;
+                margin: 40px 20px;
+                /* Reduced margin */
+                gap: 20px;
+            }
+
+            .card-wrapper {
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                margin: 40px 20px;
+                /* Reduced margin */
+                gap: 20px;
+            }
+
+            .card-row:nth-of-type(2) {
+                display: none;
+            }
+
+            header {
+                padding: 10px 20px;
+                flex-direction: row;
+                justify-content: space-between;
+            }
+
+            .logo {
+                display: flex;
+                align-items: center;
+                justify-content: flex-start;
+                width: auto;
+            }
+
+            .hamburger-menu {
+                display: block;
+                font-size: 2em;
+                color: white;
+                cursor: pointer;
+                z-index: 1000;
+            }
+
+            .nav-container {
+                display: none;
+                position: absolute;
+                top: 100%;
+                right: 20px;
+                background-color: #333;
+                padding: 15px;
+                flex-direction: column;
+                align-items: flex-start;
+                z-index: 1000;
+                min-width: 200px;
+                border-radius: 5px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            }
+
+            .nav-container.show {
+                display: flex;
+            }
+
+            .center-nav {
+                flex-direction: column;
+                gap: 10px;
+                margin: 0;
+            }
+
+            .social-icons {
+                flex-direction: row;
+                margin-top: 10px;
+                gap: 15px;
+            }
+
+            .card-container {
+                margin: 20px 10px;
+                /* Reduced margin */
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+            }
+
+            .row {
+                flex-direction: column;
+                gap: 20px;
+                align-items: center;
+            }
+
+            .card {
+                width: 100%;
+                height: 200px;
+            }
+
+            .card-row {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .arrow-controls {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 0px;
+            }
+
+            .arrow {
+                color: white;
+                font-size: 30px;
+                cursor: pointer;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <img src="Img/logo.png" alt="Logo">
+        </div>
+
+        <div class="hamburger-menu" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
+        </div>
+
+        <div class="nav-container" id="navContainer">
+            <div class="center-nav">
+                <a href="home.html"><i class="fas fa-home"></i>HOME</a>
+                <a href="template.html"><i class="fas fa-clone"></i>Templates</a>
+            </div>
+            <div class="social-icons">
+                <a href="#"><img src="Img/facebook.png" alt="Facebook"></a>
+                <a href="#"><img src="Img/link in.png" alt="LinkedIn"></a>
+                <a href="#"><img src="Img/gmail.png" alt="Email"></a>
+            </div>
+        </div>
+    </header>
+
+    <video autoplay muted loop playsinline id="bg-video">
+        <source src="videos/background.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+
+    <section class="hero">
+        <h1>Templates</h1>
+        <div class="search-bar">
+            <i class="fas fa-search" style="color: black; font-size: 16px;"></i>
+            <input type="text" placeholder="Search your theme..." />
+        </div>
+    </section>
+
+    <div class="card-wrapper">
+        <div class="card-container">
+            <div class="card-row">
+                <div class="row">
+                    <a href="signin.html" class="card red">
+                        <img src="Img/theme3.jpg" alt="PPT Icon">
+                        <div class="card-text">Flame of Expression</div>
+                    </a>
+                    <a href="signin.html" class="card blue">
+                        <img src="Img/theme2.jpg" alt="PayPal Icon">
+                        <div class="card-text">Ocean of Trust</div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="card-row">
+                <div class="row">
+                    <a href="signin.html" class="card yellow">
+                        <img src="Img/theme4.jpg" alt="Ghost Icon">
+                        <div class="card-text">Spirit of Imagination</div>
+                    </a>
+                    <a href="signin.html" class="card green">
+                        <img src="Img/theme5.jpg" alt="Leaf Icon">
+                        <div class="card-text">Leaf of Innovation</div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="arrow-controls">
+            <div class="arrow">&#9650;</div> <!-- Up -->
+            <div class="arrow">&#9660;</div> <!-- Down -->
+        </div>
+    </div>
+
+    <footer>
+        <img src="Img/logo.png" alt="Footer Logo">
+    </footer>
+
+    <script>
+        const cards = [
+            { img: "Img/theme3.jpg", text: "Flame of Expression" },
+            { img: "Img/theme2.jpg", text: "Ocean of Trust" },
+            { img: "Img/theme4.jpg", text: "Spirit of Imagination" },
+            { img: "Img/theme5.jpg", text: "Leaf of Innovation" },
+            { img: "Img/theme6.jpg", text: "Pulse of Creativity" },
+            { img: "Img/theme7.jpg", text: "Ray of Clarity" },
+            { img: "Img/theme8.jpg", text: "Wave of Inspiration" },
+            { img: "Img/theme9.jpg", text: "Echo of Ideas" }
+        ];
+
+        let index = 0;
+
+        function renderCards() {
+            const cardRows = document.querySelectorAll('.card-row');
+
+            // Display first 4 cards
+            for (let i = 0; i < 4; i++) {
+                const card = cardRows[Math.floor(i / 2)].querySelectorAll('.card')[i % 2];
+                card.querySelector('img').src = cards[index + i].img;
+                card.querySelector('.card-text').innerText = cards[index + i].text;
+            }
+        }
+
+        document.querySelectorAll('.arrow')[0].addEventListener('click', () => {
+            // Up arrow
+            if (index >= 2) {
+                index -= 2;
+                renderCards();
+            }
+        });
+
+        document.querySelectorAll('.arrow')[1].addEventListener('click', () => {
+            // Down arrow
+            if (index + 4 < cards.length) {
+                index += 2;
+                renderCards();
+            }
+        });
+
+        renderCards(); // Initial load
+
+        function toggleMenu() {
+            document.getElementById("navContainer").classList.toggle("show");
+        }
+    </script>
+
+</body>
+
+</html>

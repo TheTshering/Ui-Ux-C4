@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <title>Personal Page</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .navbar {
+            background: #000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            position: relative;
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            flex-grow: 1;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            padding: 10px;
+            font-size: 16px;
+            margin: 0 15px;
+            transition: color 0.3s ease;
+        }
+
+        .navbar a:hover {
+            color: white;
+            background-color: #333;
+        }
+
+        .logout-btn {
+            color: white;
+            background: none;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            padding: 10px;
+            margin-left: auto;
+        }
+
+        .logout-btn:hover {
+            background-color: #333;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: nowrap;
+            height: auto;
+            padding: 0;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .left {
+            width: 35%;
+            text-align: center;
+            margin-top: 30px;
+            padding: 10px;
+        }
+
+        .photo-preview {
+            width: 80%;
+            height: 250px;
+            background-color: #ddd;
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-size: 80px;
+            color: #999;
+            text-align: center;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .placeholder-text {
+            font-size: 14px;
+            color: #555;
+            margin-top: 10px;
+        }
+
+        .name-input {
+            font-size: 20px;
+            font-weight: bold;
+            border: none;
+            text-align: center;
+            margin-top: 15px;
+            outline: none;
+            width: 80%;
+        }
+
+        .keyword-box {
+            width: 80%;
+            height: 180px;
+            font-size: 14px;
+            border-radius: 4px;
+            resize: none;
+            padding: 10px;
+        }
+
+        .photo-preview i {
+            pointer-events: none;
+        }
+
+        .middle {
+            width: 30%;
+            padding: 20px;
+        }
+
+        .middle h2 {
+            font-family: 'Cursive', sans-serif;
+            text-align: center;
+            margin: 0 0 15px 0;
+        }
+
+        .middle textarea {
+            width: 100%;
+            height: 500px;
+            resize: none;
+            font-size: 16px;
+            padding: 10px;
+        }
+
+        .right {
+            width: 35%;
+        }
+
+        .right img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .publish-btn {
+            background: green;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 20px auto;
+            display: block;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 4px;
+        }
+
+        input[type="file"] {
+            margin-top: 10px;
+            width: 80%;
+        }
+
+        footer {
+            width: 100%;
+            padding: 20px 0;
+            background-color: #000;
+            text-align: center;
+        }
+
+        /* Mobile Menu Button */
+        .menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            padding: 10px;
+            z-index: 100;
+        }
+
+        @media screen and (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                padding: 10px;
+                min-height: 60px;
+                /* Add this line */
+            }
+
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                text-align: center;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                background: #000;
+                z-index: 99;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .navbar a {
+                margin: 0;
+                padding: 12px;
+                border-top: 1px solid #333;
+            }
+
+            .menu-btn {
+                display: block;
+                position: absolute;
+                right: 10px;
+                top: 10px;
+            }
+
+            .logout-btn {
+                margin: 0;
+                width: 100%;
+                display: none;
+                text-align: center;
+                padding: 12px;
+                border-top: 1px solid #333;
+            }
+
+            .logout-btn.active {
+                display: block;
+            }
+
+            .photo-preview {
+                width: 200px;
+                height: 200px;
+                margin: 0 auto;
+            }
+
+            .keyword-box {
+                height: 120px;
+            }
+
+            .container {
+                flex-direction: column;
+            }
+
+            .left,
+            .middle,
+            .right {
+                width: 100%;
+                padding: 10px;
+                margin-top: 10px;
+            }
+
+            .middle textarea {
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="navbar">
+        <button class="menu-btn" id="menuBtn" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
+        </button>
+        <div class="nav-links" id="navLinks">
+            <a href="home.html" onclick="hideMenu()"><i class="fas fa-home"></i> HOME</a>
+            <a href="about.html" onclick="hideMenu()"><i class="fas fa-user"></i> About Me</a>
+            <a href="work.html" onclick="hideMenu()"><i class="fas fa-briefcase"></i> Work/Project</a>
+            <a href="contact.html" onclick="hideMenu()"><i class="fas fa-envelope"></i> Contact Me</a>
+            <a href="curriculum.html" onclick="hideMenu()"><i class="fas fa-file-alt"></i> Curriculum</a>
+
+        </div>
+        <button class="logout-btn" id="logoutBtn" onclick="hideMenu(); window.location.href='../home.html';">
+            <i class="fas fa-sign-out-alt"></i> Logout
+        </button>
+    </div>
+
+    <div class="container">
+        <div class="left">
+            <div class="photo-preview" id="photoPreview">
+                <i class="fa fa-user"></i>
+                <p class="placeholder-text">Upload Your Half-Photo Here</p>
+            </div>
+            <input type="file" accept="image/*" onchange="previewImage(event)"><br>
+            <br>
+            <input type="text" placeholder="Full Name Here" class="name-input"><br><br>
+            <div class="keywords">
+                <textarea placeholder="KEY WORDS THAT DESCRIBE YOU" class="keyword-box"></textarea>
+            </div>
+        </div>
+
+        <div class="middle">
+            <h2>INTRODUCTION</h2>
+            <textarea placeholder="Write your introduction here..."></textarea>
+        </div>
+
+        <div class="right">
+            <img src="/Img/who are you.jpg" alt="Who are you image">
+        </div>
+    </div>
+
+    <footer>
+        <button class="publish-btn">Publish</button>
+    </footer>
+
+    <script>
+        function previewImage(event) {
+            const reader = new FileReader();
+            reader.onload = function () {
+                const preview = document.getElementById('photoPreview');
+                preview.style.backgroundImage = `url('${reader.result}')`;
+                preview.innerHTML = ""; // remove icon
+            };
+            reader.readAsDataURL(event.target.files[0]);
+        }
+
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            const logoutBtn = document.getElementById('logoutBtn');
+            navLinks.classList.toggle('active');
+            logoutBtn.classList.toggle('active');
+        }
+
+        function hideMenu() {
+            const navLinks = document.getElementById('navLinks');
+            const logoutBtn = document.getElementById('logoutBtn');
+            navLinks.classList.remove('active');
+            logoutBtn.classList.remove('active');
+        }
+
+        // Close menu when clicking outside
+        document.addEventListener('click', function (event) {
+            const menuBtn = document.getElementById('menuBtn');
+            const navLinks = document.getElementById('navLinks');
+            const logoutBtn = document.getElementById('logoutBtn');
+
+            if (!menuBtn.contains(event.target)) {
+                navLinks.classList.remove('active');
+                logoutBtn.classList.remove('active');
+            }
+        });
+    </script>
+
+</body>
+
+</html>

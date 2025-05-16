@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Build Your Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Metal+Mania&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+            /* Set Roboto as the default font for all text */
+            color: #fff;
+        }
+
+        #bg-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            min-width: 100%;
+            min-height: 100%;
+            object-fit: cover;
+            z-index: -1;
+            /* Send behind other content */
+        }
+
+        header {
+            background-color: #333;
+            padding: 10px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 70px;
+            width: auto;
+        }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .center-nav {
+            display: flex;
+            gap: 30px;
+            margin-right: 100px;
+        }
+
+        .center-nav a {
+            color: #fff;
+            text-decoration: none;
+            font-family: 'Roboto', sans-serif;
+            font-weight: bold;
+            font-size: 1.3em;
+        }
+
+        .center-nav a i {
+            margin-right: 5px;
+        }
+
+        .center-nav a:hover {
+            color: rgb(184, 176, 176);
+            background-color: #333;
+            border-radius: 5px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 30px;
+        }
+
+        .social-icons a img {
+            width: 35px;
+            height: 35px;
+            transition: transform 0.3s ease, margin 0.3s ease;
+        }
+
+        .social-icons a img:hover {
+            transform: scale(1.1);
+            margin-right: 10px;
+        }
+
+        .hamburger-menu {
+            display: none;
+            font-size: 2em;
+            color: white;
+            cursor: pointer;
+        }
+
+        .hero {
+            position: relative;
+            text-align: center;
+            background: url("Img/herobanner.jpg") no-repeat center center/cover;
+            padding: 150px 20px;
+            color: #000;
+        }
+
+        .hero h1 {
+            font-size: 3em;
+            font-family: 'Metal Mania', cursive;
+            letter-spacing: 5px;
+        }
+
+        .hero button {
+            position: absolute;
+            bottom: 90px;
+            right: 90px;
+            padding: 10px 20px;
+            background-color: rgb(3, 68, 3);
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            font-size: 1em;
+            cursor: pointer;
+        }
+
+        .section {
+            display: flex;
+            font-family: 'Roboto', sans-serif;
+            flex-wrap: wrap;
+            padding: 40px 20px;
+            gap: 20px;
+            background-color: none;
+            /*#2c2c2c; */
+        }
+
+        .section .text,
+        .section .image {
+            flex: 1 1 300px;
+        }
+
+        .text h2 {
+            text-align: center;
+        }
+
+        .text p {
+            line-height: 1.6;
+        }
+
+        .image img {
+            width: 100%;
+            border-radius: 4px;
+        }
+
+        footer {
+            background-color: #111;
+            text-align: center;
+            padding: 7px;
+        }
+
+        footer img {
+            height: 70px;
+            width: auto;
+        }
+
+        /* Mobile Styles */
+        @media (max-width: 768px) {
+            .center-nav a {
+                display: inline;
+                /* Reset display */
+                align-items: initial;
+            }
+
+            header {
+                padding: 10px 20px;
+            }
+
+            .hamburger-menu {
+                display: block;
+            }
+
+            .nav-container {
+                display: none;
+                position: absolute;
+                top: 100%;
+                right: 20px;
+                background-color: #333;
+                padding: 15px;
+                flex-direction: column;
+                align-items: flex-start;
+                z-index: 1000;
+                min-width: 200px;
+                border-radius: 5px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            }
+
+            .nav-container.show {
+                display: flex;
+            }
+
+            .center-nav {
+                flex-direction: column;
+                gap: 10px;
+                margin: 0;
+            }
+
+            .social-icons {
+                flex-direction: row;
+                margin-top: 10px;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <img src="Img/logo.png" alt="Logo">
+        </div>
+
+        <div class="hamburger-menu" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
+        </div>
+
+        <div class="nav-container" id="navContainer">
+            <div class="center-nav">
+                <a href="home.html"><i class="fas fa-home"></i>HOME</a>
+                <a href="template.html"><i class="fas fa-clone"></i>Templates</a>
+            </div>
+            <div class="social-icons">
+                <a href="#"><img src="Img/facebook.png" alt="Facebook"></a>
+                <a href="#"><img src="Img/link in.png" alt="LinkedIn"></a>
+                <a href="#"><img src="Img/gmail.png" alt="Email"></a>
+            </div>
+        </div>
+    </header>
+    <video autoplay muted loop playsinline id="bg-video">
+        <source src="videos/background.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <section class="hero">
+        <h1>BUILD YOUR <br> PORTFOLIO</h1>
+        <a href="template.html">
+            <button>Create</button>
+        </a>
+    </section>
+
+    <section class="section">
+        <div class="text">
+            <h2>How to Build Portfolio Here</h2>
+            <p>To create your portfolio, start by navigating to the Template Page or clicking on the Create button
+                above. Browse through the available templates and choose one that suits your theme.</p>
+            <p>Once you've selected a template, sign up using your email or social media account to get started. After
+                signing up, fill in the required personal info and begin adding professional content — such as project
+                work, skills and achievements.</p>
+            <p>Then publish it instantly with your portfolio link.</p>
+            <p>Your unique portfolio address will be ready, providing a unique link that you can share with employers,
+                friends, or colleges to showcase your work. It's that simple!</p>
+        </div>
+        <div class="image">
+            <img src="Img/img.jpg" alt="Notebook Image">
+        </div>
+    </section>
+
+    <footer>
+        <img src="Img/logo.png" alt="Footer Logo">
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            document.getElementById("navContainer").classList.toggle("show");
+        }
+    </script>
+</body>
+
+</html>

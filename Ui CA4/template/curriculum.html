@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Personal Page</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #D4CCCC;
+            background-image: url('../Img/recom2.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center center;
+            /* Add this to ensure proper scaling */
+            background-attachment: scroll;
+            /* Changed from fixed */
+            min-height: 100vh;
+        }
+
+        .navbar {
+            background: #000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            position: relative;
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            flex-grow: 1;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            padding: 10px;
+            font-size: 16px;
+            margin: 0 15px;
+            transition: color 0.3s ease;
+        }
+
+        .navbar a:hover {
+            color: white;
+            background-color: #333;
+        }
+
+        .logout-btn {
+            color: white;
+            background: none;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            padding: 10px;
+            margin-left: auto;
+        }
+
+        .logout-btn:hover {
+            background-color: #333;
+        }
+
+
+        .publish-btn {
+            background: green;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 20px auto;
+            display: block;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 4px;
+        }
+
+        input[type="file"] {
+            margin-top: 10px;
+            width: 80%;
+        }
+
+        footer {
+            width: 100%;
+            padding: 20px 0;
+            background-color: #000;
+            text-align: center;
+        }
+
+        .section1 {
+            background: url('../Img/recommend.jpg') no-repeat center;
+            background-size: cover;
+            text-align: center;
+            padding: 80px 20px;
+            color: #333;
+            /* Add these for better mobile display */
+            background-attachment: scroll;
+            min-height: 50vh;
+        }
+
+
+        .section1 h2 {
+            margin-bottom: 20px;
+            font-size: 48px;
+            /* increased from 24px */
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(90deg, #00c3ff, #0a327a);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 2px;
+            /* optional: space between letters */
+            line-height: 1.2;
+            /* optional: controls vertical spacing */
+        }
+
+
+
+        .upload-box {
+            width: 600px;
+            /* increased from 300px */
+            height: 350px;
+            /* increased from 180px */
+            margin: 0 auto;
+            background-color: rgba(0, 0, 0, 0.4);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            position: relative;
+            cursor: pointer;
+            overflow: hidden;
+        }
+
+
+        .upload-box input {
+            position: absolute;
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+        }
+
+        .cert-grid-container {
+            position: relative;
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 0 40px;
+            /* Space for scroll buttons */
+        }
+
+        .cert-grid {
+            display: flex;
+            gap: 20px;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            padding: 20px 0;
+            -webkit-overflow-scrolling: touch;
+            /* Smooth scrolling on iOS */
+            scrollbar-width: none;
+            /* Hide scrollbar for Firefox */
+            margin-bottom: 20px;
+        }
+
+        .cert-grid::-webkit-scrollbar {
+            display: none;
+            /* Hide scrollbar for Chrome/Safari */
+        }
+
+        .cert-card {
+            flex: 0 0 250px;
+            /* Fixed width, no grow or shrink */
+            height: 350px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            scroll-snap-align: start;
+        }
+
+        /* Scroll buttons */
+        .scroll-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 40px;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 18px;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .scroll-btn:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .left-scroll {
+            left: 0;
+        }
+
+        .right-scroll {
+            right: 0;
+        }
+
+
+        .publish-btn {
+            background: green;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 20px auto;
+            display: block;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 4px;
+        }
+
+        .publish-btn:hover {
+            background-color: #111;
+        }
+
+        .section2 p {
+            text-align: center;
+            max-width: 600px;
+            margin: 20px auto;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        /* Mobile Menu Button */
+        .menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            padding: 10px;
+            z-index: 100;
+        }
+
+        @media screen and (max-width: 768px) {
+
+            /* Body and background fixes */
+            body {
+                background-image: url('../Img/recom2.jpg');
+                /* Add your image path here */
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;
+                background-color: #f5f5f5 !important;
+                padding: 0;
+            }
+
+            /* Navbar fixes */
+            .navbar {
+                flex-direction: column;
+                padding: 10px;
+                min-height: 60px;
+                background: rgba(0, 0, 0, 0.95);
+                position: sticky;
+                top: 0;
+                z-index: 1000;
+            }
+
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                text-align: center;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                background: rgba(0, 0, 0, 0.95);
+                z-index: 999;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .navbar a {
+                margin: 0;
+                padding: 12px;
+                border-top: 1px solid #333;
+            }
+
+            .menu-btn {
+                display: block;
+                position: absolute;
+                right: 10px;
+                top: 10px;
+            }
+
+            .logout-btn {
+                margin: 0;
+                width: 100%;
+                display: none;
+                text-align: center;
+                padding: 12px;
+                border-top: 1px solid #333;
+            }
+
+            .logout-btn.active {
+                display: block;
+            }
+
+            /* Section 1 fixes */
+            .section1 {
+                padding: 30px 15px;
+                min-height: auto;
+                margin: 0;
+            }
+
+            .section1 h2 {
+                font-size: 28px;
+                margin-bottom: 15px;
+                background: linear-gradient(90deg, #00c3ff, #0a327a);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+
+            /* Upload box fixes */
+            .upload-box {
+                width: 100%;
+                min-height: 200px;
+                height: auto;
+                padding: 30px 15px;
+                font-size: 14px;
+                text-align: center;
+                margin: 0 auto 20px;
+                background-color: rgba(0, 0, 0, 0.7);
+                border-radius: 8px;
+            }
+
+            /* Certificate grid fixes */
+            .cert-grid-container {
+                padding: 0 15px;
+            }
+
+            .cert-card {
+                flex: 0 0 150px;
+                height: 200px;
+            }
+
+            .scroll-btn {
+                width: 30px;
+                height: 30px;
+                font-size: 14px;
+            }
+
+            /* Section 2 fixes */
+            .section2 {
+                background: #fff;
+                padding: 20px 15px;
+                margin: 20px 0;
+            }
+
+            .section2 {
+                background-image: url('../Img/recom2.jpg');
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;
+                background-color: rgba(0, 0, 0, 0.6);
+                /* optional overlay */
+                padding: 20px 15px;
+                margin: 20px 0;
+                color: white;
+                /* adjust text color for contrast */
+            }
+
+            .section2 p {
+                color: black;
+            }
+
+
+
+            /* Footer fixes */
+            footer {
+                padding: 15px 0;
+                background: rgba(0, 0, 0, 0.95);
+            }
+
+            .publish-btn {
+                width: 90%;
+                margin: 10px auto;
+                padding: 12px;
+            }
+
+            /* General content container */
+            .content-container {
+                background: #fff;
+                border-radius: 8px;
+                padding: 20px;
+                margin: 15px 0;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="navbar">
+        <button class="menu-btn" id="menuBtn" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
+        </button>
+        <div class="nav-links" id="navLinks">
+            <a href="home.html" onclick="hideMenu()"><i class="fas fa-home"></i> HOME</a>
+            <a href="about.html" onclick="hideMenu()"><i class="fas fa-user"></i> About Me</a>
+            <a href="work.html" onclick="hideMenu()"><i class="fas fa-briefcase"></i> Work/Project</a>
+            <a href="contact.html" onclick="hideMenu()"><i class="fas fa-envelope"></i> Contact Me</a>
+            <a href="curriculum.html" onclick="hideMenu()"><i class="fas fa-file-alt"></i> Curriculum</a>
+        </div>
+                <button class="logout-btn" id="logoutBtn" onclick="hideMenu(); window.location.href='../home.html';">
+            <i class="fas fa-sign-out-alt"></i> Logout
+        </button>
+    </div>
+
+
+
+    <div class="section1">
+        <h2>Curriculum Vita</h2>
+        <label class="upload-box" id="recommend-box">
+            <span>Upload Your Recommendation Letter Here</span>
+            <input type="file" accept="image/*" onchange="previewImage(this, 'recommend-box')">
+        </label>
+    </div>
+
+    <div class="section2">
+        <div class="cert-grid-container">
+            <div class="cert-grid">
+                <label class="cert-card"><span>+</span><input type="file" accept="image/*"
+                        onchange="previewImage(this)"></label>
+                <label class="cert-card"><span>+</span><input type="file" accept="image/*"
+                        onchange="previewImage(this)"></label>
+                <label class="cert-card"><span>+</span><input type="file" accept="image/*"
+                        onchange="previewImage(this)"></label>
+                <label class="cert-card"><span>+</span><input type="file" accept="image/*"
+                        onchange="previewImage(this)"></label>
+                <label class="cert-card"><span>+</span><input type="file" accept="image/*"
+                        onchange="previewImage(this)"></label>
+                <label class="cert-card"><span>+</span><input type="file" accept="image/*"
+                        onchange="previewImage(this)"></label>
+                <label class="cert-card"><span>+</span><input type="file" accept="image/*"
+                        onchange="previewImage(this)"></label>
+                <label class="cert-card"><span>+</span><input type="file" accept="image/*"
+                        onchange="previewImage(this)"></label>
+                <!-- Add more cards as needed -->
+            </div>
+            <!-- Optional navigation buttons -->
+            <button class="scroll-btn left-scroll" aria-label="Scroll left">&lt;</button>
+            <button class="scroll-btn right-scroll" aria-label="Scroll right">&gt;</button>
+        </div>
+        <p>Upload your certificates earned during high school. You can also include any certificate that represents your
+            skills or achievements.</p>
+    </div>
+
+
+    <footer>
+        <button class="publish-btn">Publish</button>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            const logoutBtn = document.getElementById('logoutBtn');
+            navLinks.classList.toggle('active');
+            logoutBtn.classList.toggle('active');
+        }
+
+        function hideMenu() {
+            const navLinks = document.getElementById('navLinks');
+            const logoutBtn = document.getElementById('logoutBtn');
+            navLinks.classList.remove('active');
+            logoutBtn.classList.remove('active');
+        }
+
+        // Close menu when clicking outside
+        document.addEventListener('click', function (event) {
+            const menuBtn = document.getElementById('menuBtn');
+            const navLinks = document.getElementById('navLinks');
+            const logoutBtn = document.getElementById('logoutBtn');
+
+            if (!menuBtn.contains(event.target) && !navLinks.contains(event.target)) {
+                navLinks.classList.remove('active');
+                logoutBtn.classList.remove('active');
+            }
+        });
+
+        function previewImage(input, containerId = null) {
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    const label = input.parentElement;
+                    label.innerHTML = `<img src="${e.target.result}" alt="Uploaded Image">`;
+                    label.appendChild(input); // Reattach input
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+        // Optional JavaScript for button functionality
+        document.addEventListener('DOMContentLoaded', function () {
+            const certGrid = document.querySelector('.cert-grid');
+            const leftBtn = document.querySelector('.left-scroll');
+            const rightBtn = document.querySelector('.right-scroll');
+
+            if (leftBtn && rightBtn) {
+                leftBtn.addEventListener('click', () => {
+                    certGrid.scrollBy({ left: -300, behavior: 'smooth' });
+                });
+
+                rightBtn.addEventListener('click', () => {
+                    certGrid.scrollBy({ left: 300, behavior: 'smooth' });
+                });
+            }
+        });
+    </script>
+
+</body>
+
+</html>
